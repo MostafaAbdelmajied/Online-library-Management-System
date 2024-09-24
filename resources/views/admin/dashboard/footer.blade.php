@@ -22,6 +22,7 @@
 <!-- endinject -->
 <!-- Custom js for this page -->
 <script src="{{asset('dashboard/assets/js/dashboard.js')}}"></script>
+<script src="{{asset('plugins/datatable/js/datatables.min.js')}}"></script>
 <!-- End custom js for this page -->
 </body>
 </html>

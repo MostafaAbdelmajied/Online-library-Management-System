@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Student;
 use Illuminate\Http\Request;
 use App\Models\BorrowedBooks;
 use Illuminate\Support\Carbon;
@@ -31,7 +32,9 @@ class BookController extends Controller
         if($book->stock <= 0){
             return redirect()->route('book.show', $book->id)->with('error', 'Book is out of stock');
         }
-        $book->decrement('stock', 1);
+        $book->increment('borrowed', 1);
+        $student = Student::find(Auth::user()->id);
+        $student->increment('borrowed_books', 1);
         $data = $request->validated();
         $data['book_id'] = $book->id;
         $data['student_id'] = Auth::user()->id;
@@ -43,7 +46,9 @@ class BookController extends Controller
     public function return($id)
     {
         $borrowedBook = BorrowedBooks::find($id);
-        $borrowedBook->book->increment('stock', 1);
+        $borrowedBook->book->decrement('borrowed', 1);
+        $student = Student::find(Auth::user()->id);
+        $student->increment('returned_books', 1);
         $borrowedBook->update(['returned_at' => Carbon::now()]);
         return redirect()->route('student.books.borrows')->with('success', 'Book returned successfully');
     }

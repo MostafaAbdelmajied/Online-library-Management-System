@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('publication_year');
             $table->foreignId('category_id')->constrained('categories');
             $table->integer('stock');
+            $table->integer('borrowed')->default(0);
             $table->timestamps();
         });
     }

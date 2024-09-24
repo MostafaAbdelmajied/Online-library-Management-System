@@ -14,7 +14,9 @@
 @endif
 <div class="col-md-9">
     <div class="product-item">
-      <a href="#"><img  src="{{asset("storage/$book->image")}}" alt="not found" ></a>
+        <div class="col-md-6">
+      <a href="#"><img  src="{{asset("storage/$book->image")}}" alt="not found" width="300px" height="400px"></a>
+        </div>
       <div class="down-content">
         <h4>{{$book->name}}</h4>
         <p>by : {{$book->author}}</p>

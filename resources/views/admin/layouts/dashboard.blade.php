@@ -1,6 +1,7 @@
-@include('dashboard.head')
-@include('dashboard.sidebar')
+@include('admin.dashboard.head')
+@include('admin.dashboard.sidebar')
 <div class="container-fluid page-body-wrapper">
-    @include('dashboard.navbar')
+    @include('admin.dashboard.navbar')
     @yield('body')
-    @include('dashboard.footer')
+    @include('admin.dashboard.footer')
+    @yield('script')

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use App\Models\BorrowedBooks;
 class Student extends Model
 {
     use HasFactory;
@@ -13,5 +13,12 @@ class Student extends Model
         'email',
         'password',
         'image',
+        'borrowed_books',
+        'returned_books',
     ];
+
+    public function borrowedBooks(){
+        return $this->hasMany(BorrowedBooks::class);
+    }
+
 }
